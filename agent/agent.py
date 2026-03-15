@@ -71,6 +71,8 @@ class Agent:
 
     def _get_tokens_usage(self):
         token_usage = self.llm_adapter.get_token_usage()
+        if not token_usage:
+            return ""
         percentage = (token_usage.total_tokens / MAX_PROMPT_TOKENS) * 100
         return f"\n\n > Tokens: {token_usage.total_tokens}({int(percentage)}%) "
 

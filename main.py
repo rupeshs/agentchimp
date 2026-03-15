@@ -26,6 +26,9 @@ from memory.preferences_memory import PreferencesMemory
 from memory.short_term_memory import ShortTermMemory
 from paths import get_short_term_memory_file_path, get_workspace_path
 from state import get_event_bus
+from sys import exit
+from os import path
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--channel", type=str, help="Channel to use default=tui")
@@ -63,6 +66,16 @@ def load_agent_tools(event_bus: EventBus):
 async def main() -> None:
     console = Console()
     console.print(banner)
+
+    if not path.exists(".env"):
+        logger.error("❌ .env config file not found, please refer .env.sample file")
+        exit(1)
+    if not LLM_BASE_URL or not LLM_MODEL:
+        logger.error("❌ LLM_BASE_URL and LLM_MODEL must be set.")
+        exit(1)
+    if not LLM_API_KEY:
+        logger.error("❌ LLM_API_KEY is missing, please set it in .env file")
+        exit(1)
     logger.info("Starting AgentChimp")
     logger.info(f"Channel: {channel_name}")
     local_tz = get_localzone()
@@ -72,7 +85,6 @@ async def main() -> None:
     logger.info(f"LLM Model: {LLM_MODEL}")
     logger.info(f"Max Tokens: {MAX_PROMPT_TOKENS}")
 
-    event_bus = get_event_bus()
     llm = OpenAIAdapter(
         LLM_MODEL,
         LLM_BASE_URL,
@@ -86,6 +98,7 @@ async def main() -> None:
         LLM_API_KEY,
         LLM_TEMPERATURE,
     )
+    event_bus = get_event_bus()
     preferences_memory = PreferencesMemory(llm_mem)
     short_term_memory = ShortTermMemory(
         max_size=MAX_RECENT_MESSAGES_TO_KEEP,
@@ -100,7 +113,6 @@ async def main() -> None:
     )
 
     agent.register_tools(tools=load_agent_tools(event_bus))
-
     event_bus.subscribe(EventType.PROCESS_MESSAGE, agent.think)
     event_bus.subscribe(EventType.SHUTDOWN, agent.shutdown)
 

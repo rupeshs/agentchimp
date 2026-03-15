@@ -2,9 +2,9 @@ from os import getenv
 from dotenv import load_dotenv
 
 load_dotenv()
-LLM_BASE_URL = getenv("LLM_BASE_URL", "http://localhost:11434/v1")
-LLM_API_KEY = getenv("LLM_API_KEY", "test")
-LLM_MODEL = getenv("LLM_MODEL", "rupeshs/jan-nano-int4-ov")
+LLM_BASE_URL = getenv("LLM_BASE_URL", "")
+LLM_API_KEY = getenv("LLM_API_KEY", "")
+LLM_MODEL = getenv("LLM_MODEL", "")
 LLM_TEMPERATURE = float(getenv("LLM_TEMPERATURE", 0.0))
 ALLOWED_COMMANDS = getenv("ALLOWED_COMMANDS", "")
 TELEGRAM_BOT_TOKEN = getenv("TELEGRAM_BOT_TOKEN", "")

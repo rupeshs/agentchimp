@@ -80,7 +80,7 @@ class OpenAIAdapter:
                 tools=tools,
             )
             msg = self._from_response(response)
-            if hasattr(response, "usage") and response.usage:
+            if response and hasattr(response, "usage") and response.usage:
                 self.token_usage = TokenUsage(
                     prompt_tokens=response.usage.prompt_tokens,
                     completion_tokens=response.usage.completion_tokens,
