@@ -78,11 +78,16 @@ class TelegramChannel(AbstractChannel):
         if update.effective_chat.type != "private":
             logger.error("Private chat only")
             return
-        message = update.message.text
-        logger.info(
-            f"Received message: {message} from chat {self.chat_id} {update.effective_user.id}"
-        )
-        if self.allowed_user_id:
+        if update.message and update.message.text:
+            message = update.message.text
+            logger.info(
+                f"Received message: {message} from chat {self.chat_id} {update.effective_user.id}"
+            )
+        else:
+            logger.warning("Received non-text message")
+            return
+        user_id = update.effective_user.id
+        if user_id == self.allowed_user_id:
             self.chat_id = str(update.effective_chat.id)
             await self.event_bus.publish(EventType.PROCESS_MESSAGE, user_input=message)
         else:
