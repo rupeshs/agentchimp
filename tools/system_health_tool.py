@@ -36,9 +36,6 @@ class SystemHealthTool(AbstractTool):
 
     def execute(self, **kwargs) -> str:
         metric = kwargs.get("metric", "all").lower()
-        process = psutil.Process(os.getpid())
-        memory_info = process.memory_info()
-
         collectors = {
             "cpu": self._cpu_info,
             "memory": self._memory_info,

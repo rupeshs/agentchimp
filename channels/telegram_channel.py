@@ -35,8 +35,6 @@ class TelegramChannel(AbstractChannel):
             logger.error("Private chat only")
             return
 
-        user_id = update.effective_user.id
-
         message = update.message.text
         self.chat_id = str(update.effective_chat.id)
 
