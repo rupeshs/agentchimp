@@ -1,0 +1,17 @@
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
+LLM_BASE_URL = getenv("LLM_BASE_URL", "http://localhost:11434/v1")
+LLM_API_KEY = getenv("LLM_API_KEY", "test")
+LLM_MODEL = getenv("LLM_MODEL", "rupeshs/jan-nano-int4-ov")
+LLM_TEMPERATURE = float(getenv("LLM_TEMPERATURE", 0.0))
+ALLOWED_COMMANDS = getenv("ALLOWED_COMMANDS", "")
+TELEGRAM_BOT_TOKEN = getenv("TELEGRAM_BOT_TOKEN", "")
+MAX_PROMPT_TOKENS = int(getenv("MAX_PROMPT_TOKENS", 8096))
+MAX_RECENT_MESSAGES_TO_KEEP = int(getenv("MAX_RECENT_MESSAGES_TO_KEEP", 10))
+WORKSPACE_DIRECTORY = getenv("WORKSPACE_DIRECTORY", "workspace")
+CHANNEL = getenv("CHANNEL", "tui")
+ALLOWED_TELEGRAM_USER = getenv("ALLOWED_TELEGRAM_USER", "")
+AGENT_MAX_ITERATIONS = int(getenv("AGENT_MAX_ITERATIONS", 10))
+TAVILY_API_KEY = getenv("TAVILY_API_KEY", "")
