@@ -41,8 +41,8 @@ class TelegramChannel(AbstractChannel):
         logger.info(
             f"Received message: {message} from chat {self.chat_id} {update.effective_user.id}"
         )
-
-        if update.effective_user.username.lower() != ALLOWED_TELEGRAM_USER.lower():
+        username = update.effective_user.username
+        if username and username.lower() != ALLOWED_TELEGRAM_USER.lower():
             logger.error(f"User {ALLOWED_TELEGRAM_USER} not allowed")
             return
 
