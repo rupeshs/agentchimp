@@ -1,6 +1,6 @@
 # AgentChimp
 
-AgentChimp is simple autonomous personal AI agent. I preferred a simpler approach to have better control and safety.One key decision I made was not to use any existing agent frameworks. Instead, I built everything from scratch to have full control over the architecture, extensibility, and behavior of the agent.
+AgentChimp is a simple, autonomous personal AI agent. I chose to build it from scratch instead of using existing AI agent frameworks, so I could have full control over its design, features, and behavior.
 
 ## ✨ Key Features
 
@@ -105,7 +105,7 @@ You can create custom skills and place it inside `workspace/skills` folder.
 
 This guide explains how to create a Telegram bot and obtain the bot token required to interact with the Telegram API.
 
-### 1. Create a Bot Using BotFather
+#### Create a Bot Using BotFather
 
 Telegram provides an official bot creation tool called **BotFather**.
 
