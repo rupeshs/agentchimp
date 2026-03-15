@@ -26,6 +26,7 @@ AgentChimp is simple autonomous personal AI agent. I preferred a simpler approac
 6. Default channel is CLI(Terminal), if you want to run Telegram channel either configure in .env file or run using
 `python main.py --channel telegram`
 
+
 ## Sandbox
 Run using docker sandbox
 
@@ -117,7 +118,10 @@ Follow these steps:
 5. Create a new bot: `/newbot`
 6. Name your bot
 7. Get the Bot Token paste it inside .env file
-6. From Telegram profile get your user name and configure it it .env file
+8. Start Agent Chimp and get your Telegram pairing code
+9. Open your bot in telegram and send
+ `/pair <pairing_code>`
+10. After pairing you can now chat with Agent Chimp
 
 ## Contributing
 
