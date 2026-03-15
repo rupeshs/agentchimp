@@ -1,6 +1,6 @@
 openai==2.24.0
 python-dotenv==1.2.2
-ddgs==9.11.1
+ddgs
 rich==14.3.3
 python-telegram-bot==22.6
 psutil==7.2.2
