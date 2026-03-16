@@ -101,13 +101,13 @@ class Agent:
             is_tool_call = False
             tool_call_id = None
 
-            with self.console.status("[bold green]🧠Thinking...") as status:
+            with self.console.status("[bold green] 🧠 Thinking...") as status:
                 for iteration in range(self.max_iterations):
                     is_tool_call = False
                     tool_call_id = None
                     count = iteration + 1
                     status.update(
-                        f"[bold green]{count}/{self.max_iterations} - 🧠Thinking..."
+                        f"[bold green]{count}/{self.max_iterations} - 🧠 Thinking..."
                     )
                     llm_response = self.llm_adapter.generate(
                         [
