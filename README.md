@@ -28,15 +28,16 @@ AgentChimp is a simple, autonomous personal AI agent. I chose to build it from s
 
 
 ## Sandbox
-Run using docker sandbox
+Running AgentChimp in a Docker sandbox provides a secure, isolated environment to safely test and execute agent tasks without affecting your host system. It ensures consistent setup, easy debugging, and safer experimentation with minimal configuration.
 
-Step 1: Create a folder cd into it and run the  below command to create sandbox
+Step 1: Create a folder "agentchimp-sandbox" cd into it and run the  below command to create sandbox
 `docker sandbox run shell`
 
 Then run the sandbox 
 `docker sandbox run shell-agentchimp-sandbox`
 
 Finally install and use AgentChimp.
+
 
 ## Components
 Agent Chimp has following components
