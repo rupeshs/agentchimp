@@ -31,6 +31,7 @@ AgentChimp is a simple, autonomous personal AI agent. I chose to build it from s
 Running AgentChimp in a Docker sandbox provides a secure, isolated environment to safely test and execute agent tasks without affecting your host system. It ensures consistent setup, easy debugging, and safer experimentation with minimal configuration.
 
 Step 1: Create a folder "agentchimp-sandbox" cd into it and run the  below command to create sandbox
+
 `docker sandbox run shell`
 
 Then run the sandbox 
@@ -101,7 +102,6 @@ The following skills available.
 >Basic guide about [agent skills](https://nolowiz.com/agent-skills-complete-beginners-guide-to-ai-agent-skills-and-best-practices/)
 You can create custom skills and place it inside `workspace/skills` folder.
 
-
 ## Telegram Bot Setup Guide
 
 This guide explains how to create a Telegram bot and obtain the bot token required to interact with the Telegram API.
@@ -124,6 +124,14 @@ Follow these steps:
  `/pair <pairing_code>`
 10. After pairing you can now chat with Agent Chimp
 
+## Reminders
+Set one-time reminders easily, like: “Remind me to take an umbrella at 5 PM today”
+
+## Cron Jobs
+
+Schedule recurring tasks using available tools or skills.
+For example:
+“Send me the top 5 AI news updates every day at 8 AM.”
 ## Contributing
 
 Contributions are welcome! Please open issues for bugs or feature requests, and submit pull requests for enhancements.
