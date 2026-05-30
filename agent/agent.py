@@ -1,12 +1,10 @@
-from loguru import logger
-from rich.console import Console
-
 from agent.message import Message, ToolCall
 from agent.prompts import get_system_prompt_extension
 from config import MAX_PROMPT_TOKENS
 from events.event_types import EventType
 from events.eventbus import EventBus
 from llm.abstract_llm_adapter import AbstractLLMAdapter
+from loguru import logger
 from memory.preferences_memory import PreferencesMemory
 from memory.short_term_memory import ShortTermMemory
 from paths import (
@@ -14,6 +12,7 @@ from paths import (
     get_soul_file_path,
     get_workspace_path,
 )
+from rich.console import Console
 from skills.skills import Skills
 from tools.abstract_tool import AbstractTool
 
@@ -67,7 +66,8 @@ class Agent:
     async def think(self, user_input: str) -> None:
         if user_input:
             response = self._loop(user_input)
-            await self.event_bus.publish(EventType.SEND_MESSAGE, message=response)
+            if response:
+                await self.event_bus.publish(EventType.SEND_MESSAGE, message=response)
 
     def _get_tokens_usage(self):
         token_usage = self.llm_adapter.get_token_usage()
@@ -143,7 +143,7 @@ class Agent:
                         return llm_response.content.strip() + self._get_tokens_usage()
                     else:
                         return "NOP"
-
+            return "Reached max iterations without a final response."
         except Exception as e:
             if is_tool_call:
                 self.short_term_memory.add_message(
@@ -155,6 +155,7 @@ class Agent:
                 )
             self.console.print(f"[red]Error: {e}")
             logger.error(f"Error during think loop: {e}")
+            return f"Error: {e}"
 
     def _invoke_tool(self, tool_call: ToolCall) -> str:
         tool_name = tool_call.name
