@@ -8,7 +8,7 @@ from tools.abstract_tool import AbstractTool
 class WebSearchTool(AbstractTool):
     @property
     def name(self) -> str:
-        return "websearch"
+        return "web_search"
 
     @property
     def description(self) -> str:
