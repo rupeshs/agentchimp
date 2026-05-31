@@ -1,12 +1,14 @@
 import os
+
 import requests
+
 from tools.abstract_tool import AbstractTool
 
 
-class SearchTavilyTool(AbstractTool):
+class WebSearchTool(AbstractTool):
     @property
     def name(self) -> str:
-        return "search_tavily"
+        return "websearch"
 
     @property
     def description(self) -> str:
