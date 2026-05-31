@@ -24,6 +24,9 @@ class AbstractTool(ABC):
     def set_eventbus(self, event_bus: EventBus):
         self.event_bus = event_bus
 
+    def get_required_parameters(self) -> list[str]:
+        return list(self.get_parameters_schema().keys())
+
     def to_schema(self) -> dict:
         """Convert to OpenAI function calling format."""
         return {
@@ -34,7 +37,7 @@ class AbstractTool(ABC):
                 "parameters": {
                     "type": "object",
                     "properties": self.get_parameters_schema(),
-                    "required": list(self.get_parameters_schema().keys()),
+                    "required": self.get_required_parameters(),
                 },
             },
         }
